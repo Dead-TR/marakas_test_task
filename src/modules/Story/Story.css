@@ -1,0 +1,36 @@
+.story {
+  width: 400px;
+  height: 800px;
+  background: violet;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 5px;
+  top: 50px;
+}
+
+.story__btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #00bda4;
+  cursor: pointer;
+}
+
+.story__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 0;
+  background-color: yellowgreen;
+  overflow: hidden;
+  transition: max-height 1s;
+}
+
+.story__content_active {
+  max-height: 800px;
+}
+
+.story__item {
+  display: flex;
+}

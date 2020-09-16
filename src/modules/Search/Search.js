@@ -3,6 +3,7 @@ import './Search.css';
 
 export const Search = ({ SetTitle, SetType, SetYear, getMovie }) => {
   const [inputYear, SetInputYear] = useState('');
+  console.log("Search -> inputYear", inputYear)
 
   const yearSearch = (inputText) => {
     SetInputYear(inputText
@@ -19,7 +20,7 @@ export const Search = ({ SetTitle, SetType, SetYear, getMovie }) => {
   };
 
   useEffect(() => {
-    if (inputYear.length === 4) {
+    if (inputYear.length === 4 || inputYear.length === 0) {
       return SetYear(inputYear);
     }
   }, [inputYear]);
