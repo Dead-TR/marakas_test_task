@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ActiveMovie.css';
 
 export const ActiveMovie = ({ openedMovie, SetOpenedMovie }) => {
@@ -52,4 +53,9 @@ export const ActiveMovie = ({ openedMovie, SetOpenedMovie }) => {
       </div>
     </section>
   );
+};
+
+ActiveMovie.propTypes = {
+  openedMovie: PropTypes.objectOf(PropTypes.string).isRequired,
+  SetOpenedMovie: PropTypes.func.isRequired,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Pages.css';
 import { page as setPage } from '../../../redux-modules/Reducer';
 
@@ -79,4 +80,10 @@ export const Pages = ({ store, pagesNumber, SetUpdate }) => {
       </ul>
     </section>
   );
+};
+
+Pages.propTypes = {
+  store: PropTypes.objectOf(PropTypes.func).isRequired,
+  pagesNumber: PropTypes.number.isRequired,
+  SetUpdate: PropTypes.func.isRequired,
 };

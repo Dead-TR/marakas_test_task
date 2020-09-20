@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Result.css';
 import { Pages } from './Pages/Pages';
 
@@ -7,7 +8,6 @@ export const Result = ({
   SetUpdate,
   movies,
   pageNumber,
-  SetPage,
   SetOpenedMovie
 }) => {
 
@@ -53,10 +53,17 @@ export const Result = ({
         <Pages
           store={store}
           pagesNumber={pageNumber}
-          SetPage={SetPage}
           SetUpdate={SetUpdate}
         />
       </div>
     </section>
   );
+};
+
+Result.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  store: PropTypes.objectOf(PropTypes.func).isRequired,
+  pageNumber: PropTypes.number.isRequired,
+  SetUpdate: PropTypes.func.isRequired,
+  SetOpenedMovie: PropTypes.func.isRequired,
 };

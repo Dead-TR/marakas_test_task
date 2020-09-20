@@ -23,7 +23,6 @@ const store = createStore(
 let baceURL;
 
 const Base = () => {
-
   store.subscribe(() => {
     localStorage
       .setItem('imdbMovieList_savedState', JSON.stringify(store.getState()));
@@ -44,14 +43,20 @@ const Base = () => {
   const [story, SetStory] = useState([]);
 
   const [update, SetUpdate] = useState(false);
-  const [movieList, SetMovieList] = useState(JSON.parse(localStorage.getItem('imdbMovieList_savedMovie')) || []);
+  const [movieList, SetMovieList] = useState(
+    JSON.parse(localStorage.getItem('imdbMovieList_savedMovie')) || [],
+  );
 
   const getMovie = async() => {
-
     await (await fetch(baceURL)).json()
       .then((data) => {
         SetMovieList(data);
         localStorage.setItem('imdbMovieList_savedMovie', JSON.stringify(data));
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
       })
       .catch((data) => {
         console.log("===> ERROR <=== [", data, "]");

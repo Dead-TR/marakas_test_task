@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './Search.css';
 import {
   title,
@@ -32,7 +33,7 @@ export const Search = ({ store, SetUpdate, story, SetStory }) => {
   }, [inputYear]);
 
   return (
-    <section className="search">
+    <section className="search" id="search-bar">
       <form
         className="search__form"
         onSubmit={(event) => {
@@ -64,7 +65,7 @@ export const Search = ({ store, SetUpdate, story, SetStory }) => {
           }}
           defaultValue=""
         >
-          <option value="disable" disabled>Type</option>
+          <option value="" disabled>Type</option>
           <option value="">All</option>
           <option value="movie">Movie</option>
           <option value="series">Series</option>
@@ -95,4 +96,11 @@ export const Search = ({ store, SetUpdate, story, SetStory }) => {
       />
     </section>
   );
+};
+
+Search.propTypes = {
+  story: PropTypes.arrayOf(PropTypes.object).isRequired,
+  store: PropTypes.objectOf(PropTypes.func).isRequired,
+  SetUpdate: PropTypes.func.isRequired,
+  SetStory: PropTypes.func.isRequired,
 };
