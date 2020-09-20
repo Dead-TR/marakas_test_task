@@ -32,7 +32,7 @@ export const Result = ({
                 movie.Poster === 'N/A'
                   ? (
                     <img
-                      src="/img/no-img.png"
+                      src="./img/no-img.png"
                       alt={movie.Title}
                       className="result__item-poster"
                     />

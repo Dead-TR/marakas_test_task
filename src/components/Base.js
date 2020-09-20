@@ -27,7 +27,7 @@ const Base = () => {
     localStorage
       .setItem('imdbMovieList_savedState', JSON.stringify(store.getState()));
 
-    baceURL = `http://www.omdbapi.com/?s=${
+    baceURL = `https://www.omdbapi.com/?s=${
       store.getState().title
     }&type=${
       store.getState().type

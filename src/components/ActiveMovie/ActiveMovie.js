@@ -30,14 +30,14 @@ export const ActiveMovie = ({ openedMovie, SetOpenedMovie }) => {
           </a>
           <div
             className="active-movie__close"
-            onClick={(event) => close()}
+            onClick={() => close()}
           />
         </div>
         {
           openedMovie.Poster === 'N/A'
             ? (
               <img
-                src="/img/no-img.png"
+                src="./img/no-img.png"
                 alt={openedMovie.Title}
                 className="active-movie__img"
               />
