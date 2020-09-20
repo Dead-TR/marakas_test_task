@@ -62,7 +62,7 @@
   border-radius: 50%;
   cursor: pointer;
 
-  background: #ffffffa2 url("/img/close-outline.svg") no-repeat center;
+  background: #ffffffa2 url("close-outline.svg") no-repeat center;
   background-size: contain;
 
   position: absolute;
