@@ -1,0 +1,16 @@
+.base {
+  font-family: "Calibri", Arial, Helvetica, sans-serif;
+  background: #004c52;
+  border: 3px solid #002727;
+  border-radius: 15px;
+}
+
+.bace__error {
+
+}
+
+.bace__error-message {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #A0615F;
+}

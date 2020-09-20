@@ -1,0 +1,49 @@
+.result {
+
+}
+
+.result__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 320px);
+  grid-gap: 15px;
+  justify-content: center;
+}
+
+.result__item {
+  list-style: none;
+  background: #4E0500;
+  border-radius: 5px;
+}
+
+.result__item a {
+  padding: 10px;
+  color: #7ecf03;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.result__item-data,
+.result__item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result__item-data {
+
+}
+
+.result__item-title {
+  margin: 0;
+  width: 280px;
+  text-align: center;
+}
+
+.result__item-year {
+  margin: 0;
+}
+
+.result__item-poster {
+  height: auto;
+  width: 250px;
+}

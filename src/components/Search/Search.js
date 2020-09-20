@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Search.css';
+import {
+  title,
+  type,
+  year,
+  page,
+} from '../../redux-modules/Reducer';
+import { Story } from '../Story/Story';
 
-export const Search = ({ SetTitle, SetType, SetYear, getMovie }) => {
+export const Search = ({ store, SetUpdate, story, SetStory }) => {
   const [inputYear, SetInputYear] = useState('');
-  console.log("Search -> inputYear", inputYear)
 
   const yearSearch = (inputText) => {
     SetInputYear(inputText
@@ -21,30 +27,49 @@ export const Search = ({ SetTitle, SetType, SetYear, getMovie }) => {
 
   useEffect(() => {
     if (inputYear.length === 4 || inputYear.length === 0) {
-      return SetYear(inputYear);
+      store.dispatch(year({'year': inputYear}));
     }
   }, [inputYear]);
 
   return (
     <section className="search">
-      <form onSubmit={(event) => { getMovie(event) }}>
+      <form
+        className="search__form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          store.dispatch(page({'page': 1}));
+          SetUpdate(true);
+
+          SetStory([
+            ...story,
+            {
+              ...store.getState(),
+              id: Date.now(),
+            },
+          ]);
+        }}
+      >
         <input
           type="text"
           placeholder="Title"
           className="search__title"
           onChange={(event) => {
-            SetTitle(event.target.value);
+            store.dispatch(title({'title': event.target.value}));
           }}
         />
         <select
           className="search__type"
-          onChange={(event) => { SetType(event.target.value) }}
-          defaultValue="empty"
+          onChange={(event) => {
+            store.dispatch(type({'type': event.target.value}));
+          }}
+          defaultValue=""
         >
-          <option value="empty" disabled>Type</option>
+          <option value="disable" disabled>Type</option>
+          <option value="">All</option>
           <option value="movie">Movie</option>
           <option value="series">Series</option>
           <option value="episode">Episode</option>
+          <option value="game">Game</option>
         </select>
         <input
           type="text"
@@ -62,6 +87,12 @@ export const Search = ({ SetTitle, SetType, SetYear, getMovie }) => {
           Search
         </button>
       </form>
+
+      <Story
+        SetUpdate={SetUpdate}
+        store={store}
+        story={story}
+      />
     </section>
   );
 };
