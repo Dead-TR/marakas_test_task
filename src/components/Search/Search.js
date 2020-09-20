@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Search.css';
+
 import {
   title,
   type,
@@ -10,27 +11,9 @@ import {
 import { Story } from '../Story/Story';
 
 export const Search = ({ store, SetUpdate, story, SetStory }) => {
-  const [inputYear, SetInputYear] = useState('');
-
-  const yearSearch = (inputText) => {
-    SetInputYear(inputText
-      .split('')
-      .filter((symbol) => {
-        if (symbol.match(/[0-9]/g)) {
-          return symbol;
-        }
-
-        return '';
-      })
-      .join(''),
-    );
-  };
-
-  useEffect(() => {
-    if (inputYear.length === 4 || inputYear.length === 0) {
-      store.dispatch(year({'year': inputYear}));
-    }
-  }, [inputYear]);
+  const [inputTitle, SetInputTitle] = useState(store.getState().title);
+  const [inputYear, SetInputYear] = useState(store.getState().year);
+  const [inputType, SetInputType] = useState(store.getState().type);
 
   return (
     <section className="search" id="search-bar">
@@ -54,18 +37,20 @@ export const Search = ({ store, SetUpdate, story, SetStory }) => {
           type="text"
           placeholder="Title"
           className="search__title"
+          value={inputTitle}
           onChange={(event) => {
+            SetInputTitle(event.target.value);
             store.dispatch(title({'title': event.target.value}));
           }}
         />
         <select
           className="search__type"
+          value={inputType}
           onChange={(event) => {
+            SetInputType(event.target.value || '');
             store.dispatch(type({'type': event.target.value}));
           }}
-          defaultValue=""
         >
-          <option value="" disabled>Type</option>
           <option value="">All</option>
           <option value="movie">Movie</option>
           <option value="series">Series</option>
@@ -73,12 +58,14 @@ export const Search = ({ store, SetUpdate, story, SetStory }) => {
           <option value="game">Game</option>
         </select>
         <input
-          type="text"
+          type="number"
           placeholder="Year"
           className="search__year"
           value={inputYear}
           onChange={(event) => {
-            yearSearch(event.target.value);
+            SetInputYear(event.target.value);
+            (event.target.value.length === 0 || event.target.value.length === 4)
+              && store.dispatch(year({'year': event.target.value}));
           }}
         />
         <button

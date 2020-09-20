@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './Story.css';
+
 import {
   title,
   year,
   page,
-  type,
 } from '../../redux-modules/Reducer';
+
 export const Story = ({ story, store, SetUpdate }) => {
 
   const contentActivator = (event) => {
@@ -70,5 +72,11 @@ export const Story = ({ story, store, SetUpdate }) => {
         }
       </div>
     </section>
-  )
-}
+  );
+};
+
+Story.propTypes = {
+  story: PropTypes.arrayOf(PropTypes.object).isRequired,
+  store: PropTypes.objectOf(PropTypes.func).isRequired,
+  SetUpdate: PropTypes.func.isRequired,
+};

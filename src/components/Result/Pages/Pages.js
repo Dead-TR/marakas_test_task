@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Pages.css';
+
 import { page as setPage } from '../../../redux-modules/Reducer';
 
 export const Pages = ({ store, pagesNumber, SetUpdate }) => {

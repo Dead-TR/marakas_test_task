@@ -2,13 +2,11 @@
   width: 400px;
   display: flex;
   justify-content: flex-end;
-  /* background: pink; */
 }
 
 .story__btn {
   width: 30px;
   height: 30px;
-  /* background: red; */
   cursor: pointer;
   display: flex;
   flex-direction: column;

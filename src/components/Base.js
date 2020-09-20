@@ -26,18 +26,20 @@ const Base = () => {
   store.subscribe(() => {
     localStorage
       .setItem('imdbMovieList_savedState', JSON.stringify(store.getState()));
-    const movieData = store.getState();
 
     baceURL = `http://www.omdbapi.com/?s=${
-      movieData.title
+      store.getState().title
     }&type=${
-      movieData.type
+      store.getState().type
     }&y=${
-      movieData.year
+      store.getState().year
     }&page=${
-      movieData.page
+      store.getState().page
     }&apikey=925bbb84`;
   });
+
+  (store.getState().title === '')
+      && localStorage.removeItem('imdbMovieList_savedMovie');
 
   const [openedMovie, SetOpenedMovie] = useState(null);
   const [story, SetStory] = useState([]);
@@ -54,12 +56,11 @@ const Base = () => {
         localStorage.setItem('imdbMovieList_savedMovie', JSON.stringify(data));
         window.scrollTo({
           top: 0,
-          left: 0,
           behavior: 'smooth',
         });
       })
-      .catch((data) => {
-        console.log("===> ERROR <=== [", data, "]");
+      .catch(() => {
+        document.location.reload();
       });
 
     SetUpdate(false);

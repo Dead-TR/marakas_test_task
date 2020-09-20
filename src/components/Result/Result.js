@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Result.css';
+
 import { Pages } from './Pages/Pages';
 
 export const Result = ({
@@ -8,7 +9,7 @@ export const Result = ({
   SetUpdate,
   movies,
   pageNumber,
-  SetOpenedMovie
+  SetOpenedMovie,
 }) => {
 
   return (
